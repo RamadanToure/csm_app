@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 29 oct. 2023 à 14:57
+-- Généré le : mar. 12 déc. 2023 à 12:58
 -- Version du serveur : 5.7.26
 -- Version de PHP : 8.0.13
 
@@ -1161,7 +1161,7 @@ CREATE TABLE IF NOT EXISTS `csm_users` (
   `init_id` bigint(20) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `users_init_id_foreign` (`init_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `csm_users`
@@ -1187,7 +1187,10 @@ INSERT INTO `csm_users` (`id`, `code`, `name`, `prenom`, `email`, `email_verifie
 (55, NULL, 'Richard', NULL, 'richard@gmail.com', NULL, '$2y$10$zqedSrOn/LSx0MsU9UcmQujWYTnN.UmoHyhrVWTpreMLxK7ZvlyDK', NULL, NULL, NULL, 1, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-10-28 19:20:43', '2023-10-28 19:20:43', NULL),
 (56, NULL, 'Richard', NULL, 'richard@gmail.com', NULL, '$2y$10$iBirNkDGdwQfBstzUsIHeOwpr6RAsdftAmMjhKyRoTJV9eecfUBk.', NULL, NULL, NULL, 1, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-10-28 19:21:20', '2023-10-28 19:21:20', NULL),
 (57, NULL, 'richard', NULL, 'richard1@gmail.com', NULL, '$2y$10$m.J2bNKIGM/rgORh1JAYrO.U9pSIk.GrByh2gA1Mn2C9JWBQFNKWO', NULL, NULL, NULL, 1, 17, NULL, NULL, NULL, NULL, NULL, '95661754', NULL, NULL, '2083-10-28', NULL, '2023-10-28 21:12:58', '2023-10-28 21:13:14', NULL),
-(58, NULL, 'azazaza', NULL, 'ririri@gmail.com', NULL, '$2y$10$7I77uK6gNj0WpJp4nwLB9.Ttof4fhq.97OfMG42/k79N7lEbQDaXe', NULL, NULL, NULL, 1, 17, NULL, NULL, NULL, NULL, NULL, '789456', NULL, NULL, NULL, NULL, '2023-10-28 21:15:23', '2023-10-28 21:15:23', NULL);
+(58, NULL, 'azazaza', NULL, 'ririri@gmail.com', NULL, '$2y$10$7I77uK6gNj0WpJp4nwLB9.Ttof4fhq.97OfMG42/k79N7lEbQDaXe', NULL, NULL, NULL, 1, 17, NULL, NULL, NULL, NULL, NULL, '789456', NULL, NULL, NULL, NULL, '2023-10-28 21:15:23', '2023-10-28 21:15:23', NULL),
+(59, NULL, 'aaa', NULL, 'yuyuy@gmail.com', NULL, '$2y$10$gbum5wHJFX8w7B./k/uPx.AI4fc/sowO79r6.opJB1V454rdIK74y', NULL, NULL, NULL, 1, 17, NULL, 1, NULL, NULL, NULL, 'hffhfg', NULL, NULL, NULL, NULL, '2023-11-01 08:36:46', '2023-11-01 08:36:46', NULL),
+(60, NULL, 'TOHO', NULL, 'giwusdfsfsdfds@gmail.com', NULL, '$2y$10$nAtavThcnC9E/WGcgCHwiuVDHwByvJgI2xD2doXbqa/TFVESIuoU6', NULL, NULL, NULL, 1, 17, NULL, 1, NULL, NULL, NULL, '798998', NULL, NULL, NULL, NULL, '2023-12-11 09:58:55', '2023-12-11 09:58:55', NULL),
+(61, NULL, 'tohono', NULL, 'azazazazaz@gmail.com', NULL, '$2y$10$pwalRap38iD5ty1CKRHibu3KQaRPgJnuxr9BnNRMluDcvKA1ZVc2m', NULL, NULL, NULL, 1, 17, 'defaut.jpg', 1, NULL, NULL, NULL, '159632', NULL, NULL, NULL, NULL, '2023-12-11 10:05:37', '2023-12-11 10:05:37', NULL);
 
 -- --------------------------------------------------------
 
