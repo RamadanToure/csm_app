@@ -2,28 +2,28 @@
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
-        <a href="{{url('/')}}" class="logo logo-dark">
+        <a href="{{ url('/') }}" class="logo logo-dark">
             <span class="logo-sm">
-                <img src={{url("assets/docs/logos/logo-sm.png")}} alt="" height="30">
+                <img src="{{ url('assets/docs/logos/' . $log) }}" alt="Logo Dark" height="30">
             </span>
             <span class="logo-lg">
-                <img src={{url("assets/docs/logos/".$log)}} alt="" height="">
+                <img src="{{ url('assets/docs/logos/' . $log) }}" alt="Logo Large Dark" height="60"> <!-- Ajout de height pour la version large -->
             </span>
         </a>
         <!-- Light Logo-->
         <a href="#" class="logo logo-light">
             <span class="logo-sm">
-                <img src={{url("assets/docs/logos/logo-sm.png")}} alt="" height="30">
+                <img src="{{ asset('assets/images/douane.png') }}" alt="Logo Douane" height="30"> <!-- Correction du chemin d'image -->
             </span>
             <span class="logo-lg">
-                <img src={{url("assets/docs/logos/".$log)}} alt="" height="">
+                <img src="{{ asset('assets/images/douane.png') }}" alt="Logo Large Light" height="60"> <!-- Ajout de height pour la version large -->
             </span>
         </a>
-        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
-            id="vertical-hover">
+        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
             <i class="ri-record-circle-line"></i>
         </button>
     </div>
+
     <?php $listMenuEntete = App\Models\GiwuMenu::getListMenuTopIdEgaVari(0);?>
     @if(sizeof($listMenuEntete) != 0)
         <div id="scrollbar">
@@ -39,7 +39,7 @@
                             </a>
                         </li>
                         @foreach($listMenuEntete as $listMenuE)
-                            <!-- Vérifier si le menu contien un sous menu --> 
+                            <!-- Vérifier si le menu contien un sous menu -->
                             @if(sizeof(App\Models\GiwuMenu::getListMenuTopIdEgaVari($listMenuE->id_menu)) == 0)
                                 <li class="nav-item">
                                     <a class="nav-link menu-link" href="{{url($listMenuE->route)}}">
@@ -57,7 +57,7 @@
                                     <div class="collapse menu-dropdown" id="giwu{{$listMenuE->id_menu}}">
                                         <ul class="nav nav-sm flex-column">
                                             @foreach($listMenuSousM1 as $listMenuSM1)
-                                                <!-- Vérifier si le menu contien un sous menu -->   
+                                                <!-- Vérifier si le menu contien un sous menu -->
                                                 <?php $listMenuSousM2 = App\Models\GiwuMenu::getListMenuTopIdEgaVari($listMenuSM1->id_menu); ?>
                                                 @if(sizeof($listMenuSousM2) == 0)
                                                     <li class="nav-item">
@@ -88,13 +88,13 @@
                             @endif
                         @endforeach
                     </ul>
-                
+
             </div>
             <!-- Sidebar -->
         </div>
     @else
         <span style="color:white; text-align:center; padding-top:13px; font-size:20px" >Aucun menu n'est affecté à votre rôle.</span>
     @endif
-    
+
     <div class="sidebar-background"></div>
 </div>

