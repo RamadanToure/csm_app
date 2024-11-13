@@ -62,3 +62,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+ssh-keygen -t rsa -b 4096 -C "amaratoure@sfpgn.com"
+cat ~/.ssh/id_rsa.pub

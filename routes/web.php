@@ -5,6 +5,8 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\HomeController;
 use App\Mail\TestMail;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 /*
@@ -32,7 +34,7 @@ Route::get('/clear', function(){
 
 Auth::routes();
 
-Route::get('/', function () {return redirect()->route('home');}); // redirection vers la page home si la ligne delete 
+Route::get('/', function () {return redirect()->route('home');}); // redirection vers la page home si la ligne delete
 
 // Route::get('/',[App\Http\Controllers\SiteController::class, 'index']);
 Route::get('weberror',[App\Http\Controllers\GiwuController::class, 'weberror']);
@@ -44,14 +46,14 @@ Route::get('courrier/levelExacution/{codesuivi}',[App\Http\Controllers\CourrierC
 
 Route::group(['middleware' => 'auth'],function(){
 	Route::group(['middleware' =>'App\Http\Middleware\GiwuMiddleware'],function(){
-	
+
 		Route::get('manuel', [App\Http\Controllers\GiwuController::class, 'AfficherAideGiwu']);
-	
+
 		Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 		Route::get('myprofile',[App\Http\Controllers\GiwuController::class, 'AfficherProfile']);
 		Route::get('mysociety',[App\Http\Controllers\GiwuController::class, 'AfficherMySociete']);
 		Route::match(['get','post'],'mysociety/updatepage',[App\Http\Controllers\GiwuController::class, 'UpdatePageSoc']);
-	
+
 		Route::match(['get','post'],'updateprofil',[App\Http\Controllers\GiwuController::class, 'UpdatePageProfile']);
 		Route::match(['get','post'],'updatemdp',[App\Http\Controllers\GiwuController::class, 'UpdatePageMotDpas']);
 		//User
@@ -68,7 +70,7 @@ Route::group(['middleware' => 'auth'],function(){
 		//Trace
 		Route::get('trace/exporterExcel',[App\Http\Controllers\SaveTraceController::class, 'exporterExcel']);
 		Route::get('trace/exporterPdf',[App\Http\Controllers\SaveTraceController::class, 'exporterPdf']);
-		
+
 		/*
 		|--------------------------------------------------------------------------
 		|   DIRECTION
@@ -77,7 +79,7 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::get('direction/AffichePopDelete/{id}',[App\Http\Controllers\DirectionController::class, 'AffichePopDelete']);
 		Route::get('direction/exporterExcel',[App\Http\Controllers\DirectionController::class, 'exporterExcel']);
 		Route::get('direction/exporterPdf',[App\Http\Controllers\DirectionController::class, 'exporterPdf']);
-		
+
 		/*
 		|--------------------------------------------------------------------------
 		|   SERVICE
@@ -86,7 +88,7 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::get('service/AffichePopDelete/{id}',[App\Http\Controllers\ServiceController::class, 'AffichePopDelete']);
 		Route::get('service/exporterExcel',[App\Http\Controllers\ServiceController::class, 'exporterExcel']);
 		Route::get('service/exporterPdf',[App\Http\Controllers\ServiceController::class, 'exporterPdf']);
-		
+
 		/*
 		|--------------------------------------------------------------------------
 		|   DIVISION
@@ -95,7 +97,7 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::get('division/AffichePopDelete/{id}',[App\Http\Controllers\DivisionController::class, 'AffichePopDelete']);
 		Route::get('division/exporterExcel',[App\Http\Controllers\DivisionController::class, 'exporterExcel']);
 		Route::get('division/exporterPdf',[App\Http\Controllers\DivisionController::class, 'exporterPdf']);
-		
+
 		/*
 		|--------------------------------------------------------------------------
 		|   EXPEDITEUR
@@ -136,7 +138,7 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::get('courriersortant/AffichePopDelete/{id}',[App\Http\Controllers\CourriersortantController::class, 'AffichePopDelete']);
 		Route::get('courriersortant/exporterExcel',[App\Http\Controllers\CourriersortantController::class, 'exporterExcel']);
 		Route::get('courriersortant/exporterPdf',[App\Http\Controllers\CourriersortantController::class, 'exporterPdf']);
-	
+
 		/*
 		|--------------------------------------------------------------------------
 		|   ARCHIVE
@@ -162,9 +164,9 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::match(['get','post'],'listretraite',[App\Http\Controllers\Cons\ConslistretraiteController::class, 'listretraiteCons']);
 		Route::get('listretraite/exporterExcel',[App\Http\Controllers\Cons\ConslistretraiteController::class, 'exporterExcel']);
 		Route::get('listretraite/exporterPdf',[App\Http\Controllers\Cons\ConslistretraiteController::class, 'exporterPdf']);
-	
+
 		//add-route-cms
-		
+
 		Route::resources([
 			'users'=>App\Http\Controllers\UserController::class,
 			'menu'=>App\Http\Controllers\MenuController::class,
@@ -181,6 +183,6 @@ Route::group(['middleware' => 'auth'],function(){
 			//resources-giwu
 		]);
 	});
-	
+
 });
 

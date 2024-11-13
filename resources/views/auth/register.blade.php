@@ -1,210 +1,168 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+<style>
+    /* Style pour le wrapper de la page d'authentification */
+    .auth-page-wrapper {
+        background: url('{{ asset('assets/images/background.jpg') }}') no-repeat center center;
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+    .auth-page-content {
+        background: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+        border-radius: 8px;
+        padding: 20px;
+        width: 100%;
+        max-width: 700px; /* Ajuste la largeur du cadre */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1;
+    }
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+    .auth-page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    .logo-left, .logo-right {
+        width: 80px;
+        height: 80px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+    .logo-left {
+        background-image: url('{{ asset('assets/images/douane.png') }}');
+    }
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+    .logo-right {
+        background-image: url('{{ asset('assets/images/douane2.png') }}');
+    }
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    .text-primary {
+        color: blue; /* Couleur bleue pour <h5> */
+        margin-bottom: 10px;
+    }
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+    .text-muted {
+        color: gray; /* Couleur grise pour le texte */
+        margin-bottom: 20px;
+    }
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+    .btn-custom {
+        background-color: blue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    .btn-custom:hover {
+        background-color: darkblue;
+    }
 
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+    /* Style pour les messages d'erreur */
+    .invalid-feedback {
+        display: block;
+    }
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
+    .form-control {
+        width: 100%; /* Champs du formulaire prennent toute la largeur disponible */
+    }
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
+    .footer {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+    }
 
+    .text-center {
+        text-align: center;
+    }
+</style>
 
-
-
-
-
-
-<div class="auth-page-wrapper pt-5">
-    <!-- auth page bg -->
-    <!-- <div class="auth-one-bg-position auth-one-bg"  id="auth-particles">
-        <div class="bg-overlay"></div>
-        
-        <div class="shape">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 120">
-                <path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
-            </svg>
-        </div>
-    </div> -->
-
+<div class="auth-page-wrapper">
     <!-- auth page content -->
     <div class="auth-page-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center mt-sm-5 mb-4 text-white-50">
-                        <!-- <div>
-                            <a href="index.h" class="d-inline-block auth-logo">
-                                <img src="assets/images/logo-light.png" alt="" height="20">
-                            </a>
-                        </div>
-                        <p class="mt-3 fs-15 fw-medium">{{config('app.descrApp')}}</p> -->
-                    </div>
-                </div>
+        <div class="auth-page-header">
+            <div class="logo-left"></div>
+            <div class="text-center">
+                <h1 class="text-primary">Créer un Compte</h1>
+                <h2 class="text-muted">Veuillez remplir les informations ci-dessous</h2>
             </div>
-            <!-- end row -->
-
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card mt-4">
-                    
-                        <div class="card-body p-4"> 
-                            <div class="text-center mt-2">
-                                <h5 class="text-primary">S'inscrire !</h5>
-                                <p class="text-muted">Créer votre compte pour accéder à {{config('app.name')}}</p>
-                            </div>
-                            <div class="p-2 mt-4">
-                                <form method="POST" action="{{ route('register') }}">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="mb-3">
-                                                <label for="email" class="form-label">E-mail <span class="text-danger">*</span></label>
-                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="mb-3">
-                                                <label for="matricule" class="form-label">Matricule <span class="text-danger">*</span></label>
-                                                <input id="matricule" type="text" class="form-control @error('matricule') is-invalid @enderror" name="matricule" value="{{ old('matricule') }}" autocomplete="matricule" >
-                                                @error('matricule')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Nom <span class="text-danger">*</span></label>
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" >
-                                        @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="mb-2">
-                                                <label for="userpassword" class="form-label">Mot de passe <span class="text-danger">*</span></label>
-                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
-                                                @error('password')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="mb-2">
-                                                <label for="userpassword" class="form-label">{{ __('Confirmer') }} <span class="text-danger">*</span></label>
-                                                <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" autocomplete="new-password">
-                                                @error('password-confirm')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-4">
-                                        <!-- <p class="mb-0 fs-12 text-muted fst-italic">Après inscription contactez l'administrateur pour vous affecter un rôle.</p> -->
-                                    </div>
-                                    <div class="mt-4">
-                                        <button class="btn btn-dark w-100 rounded-pill" type="submit">Créer votre compte</button>
-                                    </div>
-                                    
-                                </form>
-
-                            </div>
-                        </div>
-                        <!-- end card body -->
-                    </div>
-                    <!-- end card -->
-
-                    <div class="mt-4 text-center text-white">
-                        <p class="mb-0 text-white">Vous avez déjà un compte ? <a href="{{ route('login') }}" class="text-white fw-semibold text-primary text-decoration-underline"> S'authentifier </a> </p>
-                    </div>
-
-                </div>
-            </div>
-            <!-- end row -->
+            <div class="logo-right"></div>
         </div>
-        <!-- end container -->
+
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">E-mail <span class="text-danger">*</span></label>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="matricule" class="form-label">Matricule <span class="text-danger">*</span></label>
+                    <input id="matricule" type="text" class="form-control @error('matricule') is-invalid @enderror" name="matricule" value="{{ old('matricule') }}" autocomplete="matricule">
+                    @error('matricule')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label">Nom <span class="text-danger">*</span></label>
+                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name">
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="password" class="form-label">Mot de passe <span class="text-danger">*</span></label>
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="password-confirm" class="form-label">Confirmer <span class="text-danger">*</span></label>
+                    <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" autocomplete="new-password">
+                    @error('password_confirmation')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+            <div class="mt-4">
+                <button class="btn btn-custom w-100 rounded-pill" type="submit">Créer votre compte</button>
+            </div>
+        </form>
+
+        <div class="mt-4 text-center">
+            <p class="mb-0">Vous avez déjà un compte ? <a href="{{ route('login') }}" class="text-primary fw-semibold text-decoration-underline"> S'authentifier </a></p>
+        </div>
     </div>
     <!-- end auth page content -->
 
@@ -213,8 +171,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="text-center text-white">
-                        <p class="mb-0 text-white">&copy; <script>document.write(new Date().getFullYear())</script> {{config('app.name')}}.</p>
+                    <div class="text-center">
+                        <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> {{ config('app.name') }}.</p>
                     </div>
                 </div>
             </div>
@@ -222,4 +180,5 @@
     </footer>
     <!-- end Footer -->
 </div>
+
 @endsection

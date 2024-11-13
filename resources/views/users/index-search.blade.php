@@ -30,7 +30,8 @@
                     @if(in_array('update_user',session('InfosAction')) || in_array('delete_user',session('InfosAction')))
                         <td class="text-center">
                             @if(in_array('update_user',session('InfosAction')))
-                                <a href="{{route('users.edit',$listgiwu->code)}}" title='Modifier' class="btn btn-success btn-sm  waves-effect waves-light"><i class="ri-edit-2-line"></i></a>
+                            <a href="{{route('users.edit', $listgiwu->id)}}" title='Modifier' class="btn btn-success btn-sm  waves-effect waves-light"><i class="ri-edit-2-line"></i></a>
+
                             @endif
                             @if(in_array('delete_user',session('InfosAction')))
                                 <button type="button"  title='Supprimer' data-id="{{$listgiwu->code}}" class="btn btn-danger btn-sm  waves-effect waves-light btn-delete" data-bs-toggle="modal" ><i class="ri-delete-bin-6-line"></i></button>
